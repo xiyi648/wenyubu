@@ -1,0 +1,216 @@
+<!DOCTYPE html>  
+<html lang="zh-CN">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>福清一中文娱部</title>  
+    <style>  
+        /* 全局：青粉渐变主调（#E0F7FA → #FFD1DC） */  
+        * { margin: 0; padding: 0; box-sizing: border-box; }  
+        body {  
+            font-family: "Microsoft YaHei", sans-serif;  
+            background: linear-gradient(135deg, #E0F7FA 0%, #FFD1DC 100%);  
+            overflow-x: hidden;  
+        }  
+        .container {  
+            max-width: 1200px; margin: 0 auto; padding: 2rem;  
+        }  
+
+        /* 头部：标题修改为统一#9370DB */  
+        .header {  
+            display: flex;  
+            align-items: center;  
+            justify-content: center;  
+            margin-bottom: 2rem;  
+            white-space: nowrap; /* 确保标题在同一行 */  
+        }  
+        .header h1 {  
+            font-size: 4.2rem;  
+            font-weight: 900;  
+            letter-spacing: 0.15em;  
+            color: #9370DB; /* 统一颜色 */  
+            -webkit-text-stroke: 2px #E6E6FA; /* 保留淡紫色描边协调 */  
+            text-stroke: 2px #E6E6FA;  
+            text-shadow: 0 4px 6px rgba(147, 112, 219, 0.15),  
+                         0 8px 12px rgba(255,255,255,0.9);  
+            animation: breathe 2.5s infinite ease-in-out;  
+            position: relative;  
+            z-index: 3;  
+        }  
+        @keyframes breathe {  
+            0% { transform: scale(1); }  
+            50% { transform: scale(1.05); }  
+            100% { transform: scale(1); }  
+        }  
+
+        /* 以下样式保持不变 */  
+        .poster-grid {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  
+            gap: 1.5rem;  
+            margin-bottom: 3rem;  
+        }  
+        .poster-card {  
+            border-radius: 12px;  
+            overflow: hidden;  
+            box-shadow: 0 6px 15px rgba(0, 188, 212, 0.1),  
+                        0 6px 15px rgba(233, 30, 99, 0.05);  
+            transition: transform 0.5s, box-shadow 0.5s;  
+        }  
+        .poster-card:hover {  
+            transform: translateY(-8px) scale(1.01);  
+            box-shadow: 0 10px 25px rgba(0, 188, 212, 0.15),  
+                        0 10px 25px rgba(233, 30, 99, 0.1);  
+        }  
+        .poster-card img {  
+            width: 100%; height: auto;  
+        }  
+
+        .qr-section {  
+            display: flex; flex-wrap: wrap;  
+            justify-content: space-around;  
+            background: #FFFFFF;  
+            border-radius: 16px;  
+            padding: 2rem;  
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);  
+            margin-bottom: 3rem;  
+        }  
+        .qr-card {  
+            text-align: center; margin: 1rem;  
+            transition: transform 0.3s;  
+        }  
+        .qr-card:hover { transform: translateY(-5px); }  
+        .qr-card img {  
+            width: 180px; height: auto;  
+            border-radius: 10px;  
+            margin-bottom: 0.5rem;  
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);  
+        }  
+        .qr-card p {  
+            color: #9C27B0;  
+            font-size: 0.9rem;  
+            margin: 0;  
+        }  
+
+        .people-section {  
+            background: #FFFFFF;  
+            border-radius: 16px;  
+            padding: 2rem;  
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);  
+            margin-bottom: 3rem;  
+        }  
+        .people-section h2 {  
+            text-align: center;  
+            color: #9C27B0;  
+            margin-bottom: 1.5rem;  
+            font-size: 1.8rem;  
+            position: relative;  
+            z-index: 2;  
+        }  
+        .people-grid {  
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));  
+            gap: 1.5rem;  
+        }  
+        .person-card {  
+            position: relative;  
+            text-align: center;  
+            padding: 2rem;  
+            border-radius: 12px;  
+            background: linear-gradient(135deg, #E8F8FC 0%, #FCE4EC 100%);  
+            transition: transform 0.3s, box-shadow 0.3s;  
+            border: 1px solid #FADADD;  
+            overflow: hidden;  
+        }  
+        .person-card::before {  
+            content: "";  
+            position: absolute;  
+            top: -50%;  
+            left: -50%;  
+            width: 200%;  
+            height: 200%;  
+            background: linear-gradient(45deg,  
+                transparent 0%,  
+                #B2EBF2 25%,  
+                transparent 50%,  
+                #FFD1DC 75%,  
+                transparent 100%  
+            );  
+            background-size: 400% 400%;  
+            animation: glow-flow 3s linear infinite;  
+            transform: rotate(45deg);  
+            opacity: 0.5;  
+            z-index: 1;  
+            pointer-events: none;  
+        }  
+        .person-card h3 {  
+            color: #9C27B0;  
+            font-size: 1.2rem;  
+            position: relative;  
+            z-index: 2;  
+            margin: 0.5rem 0;  
+        }  
+        .person-card p {  
+            color: #CE93D8;  
+            font-size: 0.95rem;  
+            position: relative;  
+            z-index: 2;  
+            margin: 0;  
+        }  
+        .person-card:hover {  
+            transform: translateY(-5px);  
+            box-shadow: 0 6px 15px rgba(233, 30, 99, 0.08);  
+        }  
+        @keyframes glow-flow {  
+            0% { background-position: 0 0; }  
+            100% { background-position: -100% -100%; }  
+        }  
+
+        /* 响应式调整 */  
+        @media (max-width: 768px) {  
+            .header h1 {  
+                font-size: 2.5rem;  
+                -webkit-text-stroke: 1px #E6E6FA;  
+            }  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="container">  
+        <div class="header">  
+            <h1>福清一中文艺部</h1>  
+        </div>  
+
+        <div class="poster-grid">  
+            {% for img in images[:8] %}  
+                <div class="poster-card">  
+                    <img src="{{ url_for('static', filename=img) }}" alt="文娱部物料">  
+                </div>  
+            {% endfor %}  
+        </div>  
+
+        <div class="qr-section">  
+            <div class="qr-card">  
+                <img src="{{ url_for('static', filename='9.jpg') }}" alt="唠嗑群">  
+                <p>闻鱼部唠嗑大队<br>群号：1049541326</p>  
+            </div>  
+            <div class="qr-card">  
+                <img src="{{ url_for('static', filename='10.jpg') }}" alt="官方群">  
+                <p>福清一中48届文娱部<br>群号：826532780</p>  
+            </div>  
+        </div>  
+
+        <div class="people-section">  
+            <h2>核心成员</h2>  
+            <div class="people-grid">  
+                {% for person in people %}  
+                    <div class="person-card">  
+                        <h3>{{ person.name }}</h3>  
+                        <p>{{ person.title }}</p>  
+                    </div>  
+                {% endfor %}  
+            </div>  
+        </div>  
+    </div>  
+</body>  
+</html>
