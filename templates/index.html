@@ -180,15 +180,6 @@
         <div class="header">  
             <h1>福清一中文娱部</h1>  
         </div>  
-
-        <div class="poster-grid">  
-            {% for img in images[:8] %}  
-                <div class="poster-card">  
-                    <img src="{{ url_for('static', filename=img) }}" alt="文娱部物料">  
-                </div>  
-            {% endfor %}  
-        </div>  
-
         <div class="qr-section">  
             <div class="qr-card">  
                 <img src="{{ url_for('static', filename='9.jpg') }}" alt="唠嗑群">  
@@ -210,7 +201,16 @@
                     </div>  
                 {% endfor %}  
             </div>  
+        </div>
+        <div class="poster-grid">  
+            {% for img in images[:8] %}  
+                <div class="poster-card">  
+                    <img src="{{ url_for('static', filename=img) }}" alt="文娱部物料">  
+                </div>  
+            {% endfor %}  
         </div>  
+
+          
     </div>  
 </body>  
 </html>
